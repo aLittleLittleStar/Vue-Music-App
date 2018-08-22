@@ -9,7 +9,6 @@
 				v-for="(item, index) in dots" 
 				:class="{active: currentPageIndex === index}"
 			>
-				<!-- {{index}}======={{dots.item}} -->
 			</span>
 		</div>
 	</div>
@@ -73,12 +72,12 @@
 				this.slider = new BScroll(this.$refs.slider, {
 					scrollX: true,
 					scrollY: false,
-					momentum: false,
+					momentum: false,	//惯性
 					// 新版本 
 					snap: {
-						loop: true,
+						loop: this.loop,	// 循环
 						threshold: 0.3,
-						speed: 400					
+						speed: 400		// 轮播间隔
 					},
 				})
 
@@ -89,7 +88,7 @@
 					// 循环模式下 -1 berrer-scroll 老版本可用
 					// if (this.loop) {
 					// 	pageIndex -= 1
-						// console.log(pageIndex);
+					// 	console.log(pageIndex);
 					// }
 					this.currentPageIndex = pageIndex
 
@@ -103,15 +102,16 @@
 			// 初始化轮播点
 			_initDots () {
 				this.dots = new Array(this.children.length)
-				console.log(this.children.length);
+				// console.log(this.children.length);
 				// console.log(this.dots);
 			},
 
 			// 自动播放
 			_play () {
-				let pageIndex = this.currentPageIndex + 1
+				let pageIndex = this.currentPageIndex
 				if (this.loop) {
 					pageIndex += 1
+					// console.log(pageIndex);
 				}
 
 				this.timer = setTimeout( () => {

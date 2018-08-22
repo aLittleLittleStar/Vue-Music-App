@@ -1,4 +1,4 @@
-<!-- 4-4 7:56 -->
+<!-- 4-11 7:56 -->
 
 # vue-mu
 
@@ -142,3 +142,16 @@ fastclick.attach(document.body)
 __设置sublime__
 `preferences-setting(user)`
 `"draw_white_space": "all"`
+
+
+### 安装插件
+
+npm install axios --save
+npm install express --save
+
+__图片懒加载__
+
+npm install vue-lazyload --save
+
+
+[教程](https://www.cnblogs.com/xyyt/p/7650539.html)
