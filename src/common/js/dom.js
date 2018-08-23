@@ -13,6 +13,7 @@ export function addClass(el, className) {
   el.className = newClass.join(' ')
 }
 
+// 获取到 data-index的值
 export function getData(el, name, val) {
   const prefix = 'data-'
   if (val) {
