@@ -24,7 +24,9 @@ export function getData(el, name, val) {
 
 let elementStyle = document.createElement('div').style
 
+// 浏览器供应商 立即执行函数
 let vendor = (() => {
+  // 
   let transformNames = {
     webkit: 'webkitTransform',
     Moz: 'MozTransform',
@@ -50,6 +52,6 @@ export function prefixStyle(style) {
   if (vendor === 'standard') {
     return style
   }
-
+  // 浏览器供应商 + 首字母大写+剩余的
   return vendor + style.charAt(0).toUpperCase() + style.substr(1)
 }
