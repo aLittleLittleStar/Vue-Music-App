@@ -1,8 +1,8 @@
 <!-- 5.8  -->
 
-# vue-mu
+# vue-music-app音乐播放器
 
-> sic-app音乐播放器
+> 
 
 ## Build Setup
 

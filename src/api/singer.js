@@ -3,7 +3,7 @@
 * @Date:   2018-08-22 11:13:11
 * @Last Modified by:   Star
 <<<<<<< HEAD
-* @Last Modified time: 2018-08-22 11:19:26
+* @Last Modified time: 2018-09-04 14:25:51
 =======
 * @Last Modified time: 2018-09-03 13:54:32
 >>>>>>> singer-detail
@@ -24,9 +24,7 @@ export function getSingerList() {
 		hostUin: 0,
 		needNewCode: 0,
 		platform: 'yqq',
-<<<<<<< HEAD
 		g_tk: 1664029744,
-=======
 		g_tk: 1664029744
 	})
 
@@ -47,7 +45,6 @@ export function getSingerDetail(singerId) {
 		g_tk: 1664029744,
 		singermid: singerId
 
->>>>>>> singer-detail
 	})
 
 	return jsonp(url, data, options)
