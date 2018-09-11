@@ -2,15 +2,12 @@
 * @Author: Star
 * @Date:   2018-08-22 11:13:11
 * @Last Modified by:   Star
-<<<<<<< HEAD
-* @Last Modified time: 2018-09-04 14:25:51
-=======
+* @Last Modified time: 2018-09-05 16:41:05
 * @Last Modified time: 2018-09-03 13:54:32
->>>>>>> singer-detail
 */
 
 import jsonp from 'common/js/jsonp'
-import { commonParams, options } from './config.js'
+import { commonParams, options } from './config'
 
 export function getSingerList() {
 	const url = 'https://c.y.qq.com/v8/fcg-bin/v8.fcg'
@@ -24,7 +21,6 @@ export function getSingerList() {
 		hostUin: 0,
 		needNewCode: 0,
 		platform: 'yqq',
-		g_tk: 1664029744,
 		g_tk: 1664029744
 	})
 

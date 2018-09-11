@@ -155,3 +155,7 @@ npm install vue-lazyload --save
 
 
 [教程](https://www.cnblogs.com/xyyt/p/7650539.html)
+
+
+npm install create-keyframe-animation --save
+npm install lyric-parser --save
