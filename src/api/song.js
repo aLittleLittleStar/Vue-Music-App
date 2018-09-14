@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-09-08 19:55:41
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-08 20:02:00
+* @Last Modified time: 2018-09-14 19:59:02
 */
 
 import { commonParams } from './config'
@@ -28,3 +28,4 @@ export function getLyric(mid) {
 	})
 
 }
+

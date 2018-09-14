@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-08-24 14:17:34
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-07 13:34:19
+* @Last Modified time: 2018-09-14 16:10:07
 */
 import { playMode } from '@/common/js/config' 
 
@@ -15,7 +15,9 @@ const state = {
 	sequenceList: [],
 	// 播放没事
 	mode: playMode.sequence,
-	currentIndex: -1
+	currentIndex: -1,
+	// 歌单对象
+	disc: {}
 }
 
 export default state

@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-08-24 14:17:25
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-07 13:49:08
+* @Last Modified time: 2018-09-14 18:49:47
 */
 import * as types from './mutation-types'
 
@@ -27,6 +27,9 @@ const mutations = {
 	},
 	[types.SET_CURRENT_INDEX](state, index) {
 		state.currentIndex = index
+	},
+	[types.SET_DISC](state, disc) {
+		state.disc = disc
 	}
 }
 export default mutations

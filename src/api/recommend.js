@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-08-05 10:28:34
 * @Last Modified by:   Star
-* @Last Modified time: 2018-08-22 09:43:32
+* @Last Modified time: 2018-09-14 20:21:12
 */
 
 import jsonp from 'common/js/jsonp'
@@ -44,5 +44,38 @@ export function getDiscList() {
 	  params: data
 	}).then((res) => {
 	  return Promise.resolve(res.data)
+	})
+}
+
+
+// 获取歌单列表
+export function getSongList (disstid) {
+	const url = '/api/getSongList'
+
+	const data = Object.assign({}, commonParams, {
+		uin: 0,
+		format: 'json',
+		notice: 0,
+		needNewCode: 1,
+		new_format: 1,
+		pic: 500,
+		disstid: disstid,
+		type: 1,
+		json: 1,
+		utf8: 1,
+		onlysong: 0,
+		picmid: 1,
+		nosign: 1,
+		song_begin: 0,
+		platform: 'h5',
+		song_num: 100,
+		_: +new Date()
+	})
+
+
+	return axios.get(url, {
+		params: data
+	}).then((res) => {
+		return Promise.resolve(res.data)
 	})
 }

@@ -58,6 +58,20 @@ export function createSong(musicData) {
   })
 }
 
+// 歌曲列表
+export function creatSongList (musicData) {
+  return new Song({
+    id: musicData.id,
+    mid: musicData.mid,
+    singer: filterSinger(musicData.singer),
+    name: musicData.name,
+    album: musicData.albumname,
+    duration: musicData.interval,
+    image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.album.mid}.jpg?max_age=2592000`,
+    url: `http://ws.stream.qqmusic.qq.com/C100${musicData.mid}.m4a?fromtag=0&guid=126548448`
+  })
+}
+
 function filterSinger(singer) {
   let ret = []
   if (!singer) {
