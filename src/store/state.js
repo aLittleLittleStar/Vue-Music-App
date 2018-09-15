@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-08-24 14:17:34
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-14 16:10:07
+* @Last Modified time: 2018-09-15 15:49:36
 */
 import { playMode } from '@/common/js/config' 
 
@@ -17,7 +17,8 @@ const state = {
 	mode: playMode.sequence,
 	currentIndex: -1,
 	// 歌单对象
-	disc: {}
+	disc: {},
+	topList: {}
 }
 
 export default state

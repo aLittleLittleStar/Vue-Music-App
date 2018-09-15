@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-08-24 14:17:25
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-14 18:49:47
+* @Last Modified time: 2018-09-15 15:36:24
 */
 import * as types from './mutation-types'
 
@@ -30,6 +30,9 @@ const mutations = {
 	},
 	[types.SET_DISC](state, disc) {
 		state.disc = disc
+	},
+	[types.SET_TOP_LIST](state, topList) {
+		state.topList = topList
 	}
 }
 export default mutations
