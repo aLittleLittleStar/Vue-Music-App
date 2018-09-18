@@ -24,6 +24,14 @@
 			listenScroll: {
 				type: Boolean,
 				default: false
+			},
+			pullup: {
+				type: Boolean,
+				default: false
+			},
+			beforeScroll: {
+				type: Boolean,
+				default: false
 			}
 
 		},
@@ -46,6 +54,22 @@
 					let me = this
 					this.scroll.on('scroll', (pos) => {
 						me.$emit('scroll', pos)
+					})
+				}
+
+				if (this.pullup) {
+					// 如果有上拉刷新，就监听scrollEnd事件
+					this.scroll.on('scrollEnd', () => {
+						if (this.scroll.y <= this.scroll.maxScrollY + 50) {
+							// 当滚动距离小于等于最大的滚动条的距 + 50 离的时候，向外传递一个scrollToEnd的事件
+							this.$emit('scrollToEnd')
+						}
+					})
+				}
+
+				if (this.beforeScroll) {
+					this.scroll.on('beforeScrollStart', () => {
+						this.$emit('beforeScroll')
 					})
 				}
 			},

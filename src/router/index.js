@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-08-04 23:50:26
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-15 15:26:57
+* @Last Modified time: 2018-09-16 20:27:21
 */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -60,7 +60,13 @@ export default new Router({
     {
       path: '/search',
       name: 'Search',
-      component: Search
+      component: Search,
+      children: [
+        {
+          path: ':id',
+          component: SingerDetail
+        }
+      ]
     }
   ]
 })
