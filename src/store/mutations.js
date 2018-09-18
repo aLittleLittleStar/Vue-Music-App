@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-08-24 14:17:25
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-15 15:36:24
+* @Last Modified time: 2018-09-17 20:27:44
 */
 import * as types from './mutation-types'
 
@@ -33,6 +33,9 @@ const mutations = {
 	},
 	[types.SET_TOP_LIST](state, topList) {
 		state.topList = topList
+	},
+	[types.SET_SEARCH_HISTORY](state, history) {
+		state.searchHistory = history
 	}
 }
 export default mutations

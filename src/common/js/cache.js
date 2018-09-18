@@ -1,4 +1,4 @@
-import storage from 'good-storage'
+/* import storage from 'good-storage'
 
 const SEARCH_KEY = '__search__'
 const SEARCH_MAX_LEN = 15
@@ -91,4 +91,77 @@ export function deleteFavorite(song) {
 export function loadFavorite() {
   return storage.get(FAVORITE_KEY, [])
 }
+*/
 
+
+
+/*
+* @Author: Star
+* @Date:   2018-09-17 20:38:21
+* @Last Modified by:   Star
+* @Last Modified time: 2018-09-18 12:07:52
+*/
+
+
+import storage from 'good-storage'
+
+const SEARCH_KEY = '__search__'
+// 数组最大存 15条数据
+const SEARCH_MAX_LENGTH = 15
+
+function insterArray(arr, val, compare, maxLen) {
+  // 查找当前数组里面是否有某一个元素
+  const index = arr.findIndex(compare)
+  // 如果是第一条数据，什么都不用做
+  if (index === 0 ) {
+    return
+  } 
+  if (index > 0) {
+    // 如果数据大于零的话，把之前的数据删掉
+    arr.splice(index, 1)
+  }
+  // 把数据插入进去
+  arr.unshift(val)
+  // 如果数据大于15条的话，把最后一个数据pop掉
+  if (maxLen && arr.length > maxLen) {
+    arr.pop()
+  }
+}
+
+function deleteFromArray(arr, compare) {
+  const index = arr.findIndex(compare)
+  if (index > -1) {
+    arr.splice(index, 1)
+  }
+}
+
+export function saveSearch(query) {
+  let searches = storage.get(SEARCH_KEY, [])
+  insterArray(searches, query, (item) => {
+    return item === query
+  }, SEARCH_MAX_LENGTH)
+
+  // 把数据用storage存进去
+  storage.set(SEARCH_KEY, searches)
+  return searches
+}
+
+export function loadSearch() {
+  return storage.get(SEARCH_KEY, [])
+}
+
+// 删除搜索历史
+export function deleteSearch(query) {
+  let searches = storage.get(SEARCH_KEY, [])
+  deleteFromArray(searches, (item) => {
+    return item === query
+  })
+  // 保存数组
+  storage.set(SEARCH_KEY, searches)
+  return searches
+}
+
+export function clearSearch() {
+  storage.remove(SEARCH_KEY)
+  return []
+}

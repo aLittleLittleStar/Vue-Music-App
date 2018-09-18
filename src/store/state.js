@@ -2,9 +2,10 @@
 * @Author: Star
 * @Date:   2018-08-24 14:17:34
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-15 15:49:36
+* @Last Modified time: 2018-09-17 21:11:43
 */
-import { playMode } from '@/common/js/config' 
+import { playMode } from '@/common/js/config'
+import { loadSearch } from '@/common/js/cache'
 
 const state = {
 	singer: {},
@@ -18,7 +19,9 @@ const state = {
 	currentIndex: -1,
 	// 歌单对象
 	disc: {},
-	topList: {}
+	topList: {},
+	// 搜索历史
+	searchHistory: loadSearch()
 }
 
 export default state
