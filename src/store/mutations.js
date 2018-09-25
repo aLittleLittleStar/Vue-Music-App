@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-08-24 14:17:25
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-17 20:27:44
+* @Last Modified time: 2018-09-20 15:25:19
 */
 import * as types from './mutation-types'
 
@@ -36,6 +36,11 @@ const mutations = {
 	},
 	[types.SET_SEARCH_HISTORY](state, history) {
 		state.searchHistory = history
+	},
+	[types.SET_PLAY_HISTORY](state, history) {
+		state.playHistory = history
 	}
+
+	
 }
 export default mutations

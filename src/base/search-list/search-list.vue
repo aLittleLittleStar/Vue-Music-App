@@ -1,6 +1,6 @@
 <template>
   <div class="search-list" v-show="searches.length">
-    <!-- <transition-group name="list" tag="ul"> -->
+    <transition-group name="list" tag="ul">
       <li 
         @click="selectItem(item)" 
         :key="item" 
@@ -12,7 +12,7 @@
           <i class="icon-delete"></i>
         </span>
       </li>
-    <!-- </transition-group> -->
+    </transition-group>
   </div>
 </template>
 
@@ -58,5 +58,4 @@
         .icon-delete
           font-size: $font-size-small
           color: $color-text-d
-          margin-right: 20px
 </style>

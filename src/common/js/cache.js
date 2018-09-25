@@ -99,7 +99,7 @@ export function loadFavorite() {
 * @Author: Star
 * @Date:   2018-09-17 20:38:21
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-18 12:07:52
+* @Last Modified time: 2018-09-20 16:55:06
 */
 
 
@@ -108,6 +108,9 @@ import storage from 'good-storage'
 const SEARCH_KEY = '__search__'
 // 数组最大存 15条数据
 const SEARCH_MAX_LENGTH = 15
+
+const PLAY_KEY = '__play__'
+const PLAY_MAX_LEN = 200
 
 function insterArray(arr, val, compare, maxLen) {
   // 查找当前数组里面是否有某一个元素
@@ -164,4 +167,19 @@ export function deleteSearch(query) {
 export function clearSearch() {
   storage.remove(SEARCH_KEY)
   return []
+}
+
+// 存储播放
+export function savePlay(song) {
+  let songs = storage.get(PLAY_KEY, [])
+
+  insterArray(songs, song, (item) => {
+    return item.id === song.id
+  }, PLAY_MAX_LEN) 
+  storage.set(PLAY_KEY, songs)
+  return songs
+}
+// 读取数据
+export function loadPlay() {
+  return storage.get(PLAY_KEY, [])
 }

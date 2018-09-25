@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-08-24 14:16:33
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-18 10:26:23
+* @Last Modified time: 2018-09-20 15:25:59
 */
 
 export const singer = state => state.singer
@@ -31,5 +31,6 @@ export const disc = state => state.disc
 
 export const topList = state => state.topList
 
-
 export const searchHistory = state => state.searchHistory
+
+export const playHistory = state => state.playHistory

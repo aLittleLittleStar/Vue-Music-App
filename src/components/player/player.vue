@@ -93,11 +93,12 @@
 						<i :class="miniIcon" @click.stop="togglePlaying" class="icon-mini"></i>
 					</progress-circle>
 				</div>
-				<div class="control">
+				<div class="control" @click.stop="showPlaylist">
 					<i class="icon-playlist"></i>
 				</div>
 			</div>
 		</transition>
+		<playlist ref="playlist"></playlist>
 		<audio 
 			ref="audio" 
 			:src="currentSong.url"
@@ -120,11 +121,14 @@
 	import { shuffle } from '@/common/js/util'
 	import Lyric from 'lyric-parser'
 	import Scroll from '@/base/scroll/scroll'
+	import Playlist from '@/components/playlist/playlist'
+	import { playerMixin } from '@/common/js/mixin'
 
 	const transform = prefixStyle('transform')
 	const transitionDuration = prefixStyle('transitionDuration')
 
 	export default {
+		mixins: [playerMixin],
 		data() {
 			return {
 				songReady: false,
@@ -143,7 +147,7 @@
 			playIcon() {
 				return this.playing ? 'icon-pause' : 'icon-play'
 			},
-			// 播放模式
+			// // 播放模式
 			iconMode() {
 				return this.mode === playMode.sequence ? 'icon-sequence' : this.mode === playMode.loop ? 'icon-loop' : 'icon-random'
 			},
@@ -289,6 +293,7 @@
 			// 解决快速点击出现的bug
 			ready() {
 				this.songReady = true
+				this.savePlayHistory(this.currentSong)
 			},
 			error() {
 				this.songReady = true
@@ -313,32 +318,32 @@
 					this.currentLyric.seek(currentTime * 1000)
 				}
 			},
-			// 点击切换按钮 变换图标
-			changeMode() {
-				const mode = (this.mode + 1) % 3
-				// 改变mode
-				this.setPlayMode(mode)
-				// console.log(mode);
-				// 修改当前播放歌曲列表
-				let list = null
+			// // 点击切换按钮 变换图标
+			// changeMode() {
+			// 	const mode = (this.mode + 1) % 3
+			// 	// 改变mode
+			// 	this.setPlayMode(mode)
+			// 	// console.log(mode);
+			// 	// 修改当前播放歌曲列表
+			// 	let list = null
 
-				// 随机播放
-				if(mode === playMode.random) {
-					list = shuffle(this.sequenceList)
-				} else {
-					list = this.sequenceList
-				}
-				//由于playlist 变成随机模式， currentsong 是根据 currentindex 和 playlist 
-				//改变的，需要保持currentindex 在随机播放列表的正确位置，以确保当前播放歌曲不变
-				this.resetCurrentIndex(list)
-				this.setPlayList(list)
-			},
-			resetCurrentIndex(list) {
-				let index = list.findIndex( (item) => {
-					return item.id === this.currentSong.id 
-				})
-				this.setCurrentIndex(index)
-			},
+			// 	// 随机播放
+			// 	if(mode === playMode.random) {
+			// 		list = shuffle(this.sequenceList)
+			// 	} else {
+			// 		list = this.sequenceList
+			// 	}
+			// 	//由于playlist 变成随机模式， currentsong 是根据 currentindex 和 playlist 
+			// 	//改变的，需要保持currentindex 在随机播放列表的正确位置，以确保当前播放歌曲不变
+			// 	this.resetCurrentIndex(list)
+			// 	this.setPlayList(list)
+			// },
+			// resetCurrentIndex(list) {
+			// 	let index = list.findIndex( (item) => {
+			// 		return item.id === this.currentSong.id 
+			// 	})
+			// 	this.setCurrentIndex(index)
+			// },
 			getLyric() {
 				this.currentSong.getLyric().then((lyric) => {
 					this.currentLyric = new Lyric(lyric, this.handleLyric)
@@ -371,6 +376,9 @@
 					this.$refs.lyricList.scrollTo(0, 0, 1000)
 				}
 				this.playingLyric = txt
+			},
+			showPlaylist() {
+				this.$refs.playlist.show()
 			},
 			middleTouchStart(e) {
 				this.touch.initiated = true
@@ -458,10 +466,16 @@
 				setCurrentIndex: 'SET_CURRENT_INDEX',
 				setPlayMode: 'SET_PLAY_MODE',
 				setPlayList: 'SET_PLAY_LIST'
-			})
+			}),
+			...mapActions([
+				'savePlayHistory'
+			])
 		},
 		watch: {
 			currentSong(newSong, oldSong) {
+				if (!newSong.id) {
+					return 
+				}
 				if(newSong.id === oldSong.id) {
 					return 
 				}
@@ -487,7 +501,8 @@
 		components: {
 			ProgressBar,
 			ProgressCircle,
-			Scroll
+			Scroll,
+			Playlist
 		}
 	}
 </script>

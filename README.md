@@ -159,3 +159,52 @@ npm install vue-lazyload --save
 
 npm install create-keyframe-animation --save
 npm install lyric-parser --save
+
+
+### 搜索页面的制作
+
+#### jsonp 抓取搜索检索数据
+
+> jsonp 抓取搜索检索数据
+> 
+> 接口：https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp
+> 
+> 提供方：https://m.y.qq.com/#search
+> 
+> 需要用到 axios 用到 实现跨域请求
+> 
+> search.js 
+> 
+> webpack.dev.conf.js
+
+```
+      app.get('/api/search', function (req, res) {
+        var url = 'https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp'
+        axios.get(url, {
+          headers: {
+            referer: 'https://y.qq.com/',
+            host: 'c.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          res.json(response.data)
+        }).catch((e) => {
+          console.log(e)
+        })
+      })
+
+```
+
+> suggest.vue
+> 
+> 返回的数据是以callback开头的数据
+>
+> 对数据进行整理，使其变为json格式的数据
+>
+> `let resultData = JSON.parse(res.substring(res.indexOf("{"),res.lastIndexOf("}")+1))`
+> 
+> 然后进行使用
+> 
+> 
+### 本地存储
+npm install good-storage --save
