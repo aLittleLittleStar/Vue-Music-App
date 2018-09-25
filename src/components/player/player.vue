@@ -104,7 +104,7 @@
 		<audio 
 			ref="audio" 
 			:src="currentSong.url"
-			@canplay="ready"
+			@play="ready"
 			@error="error"
 			@timeupdate="updateTime"
 			@ended="end"
@@ -262,6 +262,7 @@
 				}
 				if(this.playing.length === 1){
 					this.loop()
+					return
 				}else {
 					let index = this.currentIndex + 1
 					if (index === this.playlist.length) {
@@ -348,6 +349,9 @@
 			// },
 			getLyric() {
 				this.currentSong.getLyric().then((lyric) => {
+					if (this.currentSong.lyric !== lyric) {
+						return
+					}
 					this.currentLyric = new Lyric(lyric, this.handleLyric)
 					if(this.playing) {
 						this.currentLyric.play()
@@ -483,14 +487,24 @@
 				}
 				if(this.currentLyric) {
 					this.currentLyric.stop()
+					this.currentTime = 0
+					this.playingLyric = ''
+					this.currentLineNum = 0
 				}
-				// 延迟
-				this.$nextTick( () => {
-					// 播放音乐
+
+				clearTimeout(this.timer)
+
+				this.timer = setTimeout(() => {
 					this.$refs.audio.play()
-					// 歌词
 					this.getLyric()
-				})
+				}, 1000)
+				// // 延迟
+				// this.$nextTick( () => {
+				// 	// 播放音乐
+				// 	this.$refs.audio.play()
+				// 	// 歌词
+				// 	this.getLyric()
+				// })
 			},
 			playing(newPlaying) {
 				const audio = this.$refs.audio
@@ -498,6 +512,13 @@
 					this.$refs.audio.play()
 					newPlaying ? audio.play() : audio.pause()
 				})
+			},
+			fullScreen(newVal) {
+				if (newVal) {
+					setTimeout(() => {
+						this.$refs.lyricList.refresh()
+					}, 20)
+				}
 			}
 		},
 		components: {
