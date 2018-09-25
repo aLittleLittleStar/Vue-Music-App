@@ -33,7 +33,7 @@
 	import { createSong } from '@/common/js/song'
 	import Singer from '@/common/js/singer'
 	import { mapMutations, mapActions } from 'vuex'
-	import noResult from '@/base/no-result/on-result'
+	import noResult from '@/base/no-result/no-result'
 
 
 

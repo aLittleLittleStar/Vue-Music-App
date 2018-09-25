@@ -99,7 +99,7 @@ export function loadFavorite() {
 * @Author: Star
 * @Date:   2018-09-17 20:38:21
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-20 16:55:06
+* @Last Modified time: 2018-09-25 15:18:56
 */
 
 
@@ -111,6 +111,10 @@ const SEARCH_MAX_LENGTH = 15
 
 const PLAY_KEY = '__play__'
 const PLAY_MAX_LEN = 200
+
+// 喜欢列表
+const FAVORITE_KEY = '__favorite__'
+const FAVORITE_MAX_LEN = 200
 
 function insterArray(arr, val, compare, maxLen) {
   // 查找当前数组里面是否有某一个元素
@@ -182,4 +186,34 @@ export function savePlay(song) {
 // 读取数据
 export function loadPlay() {
   return storage.get(PLAY_KEY, [])
+}
+
+// 保存喜欢歌曲
+export function saveFavorite(song) {
+  // 先找到 FAVORITE_KEY 如果找不到就赋值为空
+  let songs = storage.get(FAVORITE_KEY, [])
+  // 把它插入到歌曲
+  insterArray(songs, song, (item) => {
+    return song.id === item.id
+  }, FAVORITE_MAX_LEN)
+  // 
+  storage.set(FAVORITE_KEY, songs)
+  return songs
+}
+
+// 删除喜欢的歌曲
+
+export function deleteFavorite(song) {
+  // 获取该歌曲
+  let songs = storage.get(FAVORITE_KEY, [])
+  // 删除该歌曲
+  deleteFromArray(songs, (item) => {
+    return item.id === song.id
+  })
+  storage.set(FAVORITE_KEY, songs)
+  return songs
+}
+
+export function loadFavorite() {
+  return storage.get(FAVORITE_KEY, [])
 }

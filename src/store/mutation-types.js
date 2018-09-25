@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-08-24 14:16:58
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-20 15:24:27
+* @Last Modified time: 2018-09-25 15:00:01
 */
 
 export const SET_SINGER = "SET_SINGER"
@@ -28,3 +28,7 @@ export const SET_SEARCH_HISTORY = "SET_SEARCH_HISTORY"
 
 
 export const SET_PLAY_HISTORY = "SET_PLAY_HISTORY"
+
+
+export const SET_FAVORITE_LIST = "SET_FAVORITE_LIST"
+
