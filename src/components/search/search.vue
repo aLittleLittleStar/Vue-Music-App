@@ -116,7 +116,6 @@
 				this.$refs.confirm.show()
 			},
 			deleteOne(item) {
-				this.delectSearchHistory(item)
 				this.deleteSearchHistory(item)
 			},
 			deleteAll() {
