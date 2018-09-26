@@ -97,7 +97,7 @@
 			data() {
 				setTimeout( () => {
 					this.refresh()
-				}, 20)
+				}, this.refreshDelay)
 			}
 		}
 	}

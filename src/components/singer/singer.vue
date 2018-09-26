@@ -1,5 +1,5 @@
 <template>
-	<div class="singer">
+	<div class="singer" ref="singer">
 		<list-view @select="selectSinger" :data="singers" ref="list"></list-view>
 		<router-view></router-view>
 	</div>
@@ -30,10 +30,12 @@
 
 		methods: {
 			handlePlaylist(playlist) {
-        const bottom = playlist.length > 0 ? '60px' : ''
-        this.$refs.list.$el.style.bottom = bottom
-        this.$refs.list.refresh()
-      },
+				const bottom = playlist.length > 0 ? '60px' : ''
+				// bug
+				// this.$refs.list.$el.style.bottom = bottom
+				this.$refs.singer.style.bottom = bottom
+				this.$refs.list.refresh()
+			},
 			selectSinger(singer) { 
 				this.$router.push({
 					path: `/singer/${singer.id}`

@@ -25,7 +25,7 @@
 								<i class="icon-clear"></i>
 							</span>
 						</h1>
-						<search-list 
+						<search-list
 							@select="addQuery"
 							@delete="deleteOne"
 							:searches="searchHistory"
@@ -117,6 +117,7 @@
 			},
 			deleteOne(item) {
 				this.delectSearchHistory(item)
+				this.deleteSearchHistory(item)
 			},
 			deleteAll() {
 				this.clearSearchHistory()
@@ -132,7 +133,7 @@
 			},
 			...mapActions([
 				// 'saveSearchHistory',
-				// 'delectSearchHistory',
+				// 'deleteSearchHistory',
 				'clearSearchHistory'
 			])
 		},
@@ -160,7 +161,7 @@
 	@import '~common/stylus/mixin'
 		
 
-		.search
+	.search
 		.search-box-wrapper
 			margin: 20px
 		.shortcut-wrapper
@@ -201,7 +202,6 @@
 							.icon-clear
 								font-size: $font-size-medium
 								color: $color-text-d
-								margin-right: 20px
 		.search-result
 			position: fixed
 			width: 100%

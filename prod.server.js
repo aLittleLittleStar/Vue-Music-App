@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-09-25 19:33:07
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-25 20:29:17
+* @Last Modified time: 2018-09-26 10:32:41
 */
 
 var express = require('express')
@@ -10,7 +10,7 @@ var config = require('./config/index.js')
 var axios = require('axios')
 
 
-var port = process.env.PORT || config.build.port
+var port = process.env.PORT || config.build.port 
 
 var app = express()
 

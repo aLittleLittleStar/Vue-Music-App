@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-08-24 14:16:10
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-25 15:22:43
+* @Last Modified time: 2018-09-26 16:08:05
 */
 import * as types from './mutation-types'
 import { playMode } from '@/common/js/config'
@@ -18,7 +18,7 @@ function findIndex(list, song) {
 export const selectPlay = function ({commit, state}, {list, index}) {
 	commit(types.SET_SEQUENCE_LIST, list)
 	if(state.mode === playMode.random) {
-		let randomLsit = shuffle(list)
+		let randomList = shuffle(list)
 		commit(types.SET_PLAY_LIST, randomList)
 		index = findIndex(randomList, list[index])
 	} else {
@@ -34,7 +34,7 @@ export const selectPlay = function ({commit, state}, {list, index}) {
 export const randomPlay = function ({commit}, {list}) {
 	commit(types.SET_PLAY_MODE, playMode.random)
 	commit(types.SET_SEQUENCE_LIST, list)
-	let randomLsit = shuffle(list)
+	let randomList = shuffle(list)
 	commit(types.SET_PLAY_LIST, randomList)
 	commit(types.SET_CURRENT_INDEX, 0)
 }
@@ -96,7 +96,7 @@ export const saveSearchHistory = function ({commit}, query) {
 	commit(types.SET_SEARCH_HISTORY, saveSearch(query))
 }
 // 删除一条搜索历史
-export const delectSearchHistory = function ({commit}, query) {
+export const deleteSearchHistory = function ({commit}, query) {
 	commit(types.SET_SEARCH_HISTORY, deleteSearch(query))
 }
 // 清空搜索历史

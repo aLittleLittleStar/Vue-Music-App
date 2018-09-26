@@ -2,7 +2,7 @@
 * @Author: Star
 * @Date:   2018-08-24 14:17:25
 * @Last Modified by:   Star
-* @Last Modified time: 2018-09-25 15:01:32
+* @Last Modified time: 2018-09-26 15:49:17
 */
 import * as types from './mutation-types'
 
@@ -40,7 +40,7 @@ const mutations = {
 	[types.SET_PLAY_HISTORY](state, history) {
 		state.playHistory = history
 	},
-		[types.SET_FAVORITE_LIST](state, list) {
+	[types.SET_FAVORITE_LIST](state, list) {
 		state.favoriteList = list
 	}
 

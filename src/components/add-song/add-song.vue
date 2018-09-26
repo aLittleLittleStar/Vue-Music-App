@@ -80,6 +80,7 @@
 				// query: '',
 				showSinger: false,
 				currentIndex: 0,
+				songs: [],
 				switches: [
 					{name: '最近播放'},
 					{name: '搜索历史'},
